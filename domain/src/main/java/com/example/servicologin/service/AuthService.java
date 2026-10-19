@@ -51,7 +51,7 @@ public class AuthService {
             throw new CredenciaisInvalidasException("Email ou senha invalidos");
         }
 
-        String token = tokenEmissor.emitir(usuario.email(), usuario.nome(), usuario.perfil());
+        String token = tokenEmissor.emitir(usuario.id(), usuario.email(), usuario.nome(), usuario.perfil());
         return new Sessao(token, usuario.nome(), usuario.perfil());
     }
 

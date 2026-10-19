@@ -31,12 +31,13 @@ public class JwtService implements TokenEmissor {
     }
 
     @Override
-    public String emitir(String email, String nome, Perfil perfil) {
+    public String emitir(Long id, String email, String nome, Perfil perfil) {
         Date agora = new Date();
         Date expiracao = new Date(agora.getTime() + jwtExpirationMs);
 
         return Jwts.builder()
-                .subject(email)
+                .subject(String.valueOf(id))
+                .claim("email", email)
                 .claim("role", perfil.name())
                 .claim("nome", nome)
                 .issuedAt(agora)

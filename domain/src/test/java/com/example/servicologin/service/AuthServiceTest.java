@@ -61,7 +61,7 @@ class AuthServiceTest {
             }
         };
 
-        TokenEmissor tokens = (email, nome, perfil) -> "token:" + email + ":" + perfil;
+        TokenEmissor tokens = (id, email, nome, perfil) -> "token:" + id + ":" + perfil;
 
         service = new AuthService(repository, senhas, tokens);
     }
@@ -98,7 +98,7 @@ class AuthServiceTest {
 
         assertEquals(Perfil.ADMIN, sessao.perfil());
         assertEquals("Admin", sessao.nome());
-        assertEquals("token:admin@x.com:ADMIN", sessao.token());
+        assertEquals("token:1:ADMIN", sessao.token()); // o token leva o ID do usuario (1o cadastrado), nao o e-mail
     }
 
     @Test
